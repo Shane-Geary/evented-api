@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :events
   resources :groups, except: [:update, :destroy]
   devise_for :users
   devise_for :installs
