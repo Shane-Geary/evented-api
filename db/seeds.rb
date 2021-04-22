@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+group1 = Group.find_or_create_by(name: 'DeadHeads', fav_event: 'Concerts', fav_genre: 'Rock', catchphrase: 'Far out, man')
+group1 = Group.find_or_create_by(name: 'Headbangers', fav_event: 'Concerts', fav_genre: 'Dubstep', catchphrase: 'Break your neck!')
