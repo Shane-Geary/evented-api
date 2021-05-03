@@ -11,10 +11,10 @@ class GroupsController < ApplicationController
   # GET /groups/1
   def show
     hash = GroupSerializer.new(@group, include: [:events]).serializable_hash
-      render json: {
-        group: hash[:data][:attributes],
-        events: hash[:included].map{|event| event[:attributes]}
-      }
+    render json: {
+      group: hash[:data][:attributes],
+      events: hash[:included].map{|event| event[:attributes]}
+    }
   end
 
   # POST /groups
