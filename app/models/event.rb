@@ -1,9 +1,9 @@
 class Event < ApplicationRecord
-    has_one_attatched :poster
+    has_one_attached :poster
     belongs_to :user 
     belongs_to :group 
 
-    validates :name, :location, :type, :start_time, :end_time, presence: true
+    validates :name, :location, :event_type, :start_time, :end_time, presence: true
     validates :name, uniqueness: {scope: [:start_time, :location, :group_id], message: "This Event may have already been created."},
     if: Proc.new { |event| event.name.present? }
     validate :validate_start_time, if: Proc.new { |event| event.start_time.present? &&

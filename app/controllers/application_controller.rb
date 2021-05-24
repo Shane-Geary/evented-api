@@ -1,29 +1,41 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
     skip_before_action :verify_authenticity_token
 
     helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!, :set_user
-    
-    def login!
-        session[:user_id] = @user.id
-    end
 
-    def logged_in?
-        !!session[:user_id]
+    def encode_token(payload)
+        JWT.encode(payload, 'my_secret')
+    end
+    
+    def auth_header
+        request.headers['Authorization']
+    end
+    
+    def decoded_token
+        if auth_header
+            token = auth_header.split(' ')[1]
+            begin
+                JWT.decode(token, 'my_secret', true, algorithm: 'HS256')
+            rescue JWT::DecodeError
+                nil
+            end
+        end
+        
     end
 
     def current_user
-        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+        if decoded_token
+            puts decoded_token.class
+            user_id = decoded_token[0]['user_id']
+            @user = User.find_by(id: user_id)
+        end
     end
-
-    def authorized_user?
-        @user == current_user
+    
+    def logged_in?
+        !!current_user
     end
-
-    def logout!
-        session.clear
-    end
-
-    def set_user
-        @user = User.find_by(id: session[:user_id])
+    
+    def require_login
+        render json: {message: 'Please Login or Sign up to see content'}, status: :unauthorized unless logged_in?
     end
 end

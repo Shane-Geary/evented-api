@@ -1,17 +1,9 @@
 class UsersController < ApplicationController
+    skip_before_action :require_login, only: [:create, :index]
     
     def index
-        @users = User.all
-           if @users
-              render json: {
-              users: @users
-            }
-        else
-              render json: {
-              status: 500,
-              errors: ['no users found']
-            }
-        end
+        users = User.all
+        render json: users, status: :ok
     end
 
     def show
@@ -29,21 +21,16 @@ class UsersController < ApplicationController
     end
       
     def create
-        @user = User.new(user_params)
-            if @user.save
-                login!  
-                render json: {
-                status: :created,
-                user: @user
-            }
-        else 
-            render json: {
-                status: 500,
-                errors: @user.errors.full_messages
-            }
-            end
-      end
-
+        user = User.create(user_params)
+        if user.valid?
+            payload = {user_id: user.id}
+            token = encode_token(payload)
+            render json: {user: UserSerializer.new(user), jwt: token}, status: :created
+        else
+            render json: {errors: user.errors.full_messages}, status: :not_acceptable
+        end
+    end
+    
     private
       
      def user_params

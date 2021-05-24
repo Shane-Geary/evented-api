@@ -27,8 +27,11 @@ gem 'rack-cors'
 
 gem 'bcrypt'
 
+gem 'active_model_serializers'
+
 gem 'devise'
 gem 'devise-jwt'
+gem 'jwt'
 gem 'jsonapi-serializer'
 
 group :development, :test do
