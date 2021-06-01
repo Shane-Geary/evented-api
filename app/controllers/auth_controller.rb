@@ -1,5 +1,5 @@
 class AuthController < ApplicationController
-    skip_before_action :require_login, only: [:login]
+    # skip_before_action :require_login, only: [:login]
 
     def login
         user = User.find_by(username: login_params[:username])
@@ -12,9 +12,9 @@ class AuthController < ApplicationController
         end
     end
 
-    def auto_login
-        render json: {user: UserSerializer.new(current_user)}, status: :accepted
-    end
+    # def auto_login
+    #     render json: {user: UserSerializer.new(current_user)}, status: :accepted
+    # end
     
     private
 

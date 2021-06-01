@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::API
-    skip_before_action :verify_authenticity_token
-
-    helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!, :set_user
+    # before_action :require_login
 
     def encode_token(payload)
         JWT.encode(payload, 'my_secret')
@@ -35,7 +33,7 @@ class ApplicationController < ActionController::API
         !!current_user
     end
     
-    def require_login
-        render json: {message: 'Please Login or Sign up to see content'}, status: :unauthorized unless logged_in?
-    end
+    # def require_login
+    #     render json: {message: 'Please Login or Sign up to see content'}, status: :unauthorized unless logged_in?
+    # end
 end

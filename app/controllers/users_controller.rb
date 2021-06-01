@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login, only: [:create, :index]
+    # skip_before_action :require_login, only: [:create, :index]
     
     def index
         users = User.all
@@ -7,10 +7,10 @@ class UsersController < ApplicationController
     end
 
     def show
-       @user = User.find(params[:id])
-           if @user
+       user = User.find(params[:id])
+           if user
               render json: {
-              user: @user
+              user: user
             }
         else
             render json: {
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
             render json: {errors: user.errors.full_messages}, status: :not_acceptable
         end
     end
-    
+
     private
       
      def user_params
