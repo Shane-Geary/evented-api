@@ -12,9 +12,9 @@ class AuthController < ApplicationController
         end
     end
 
-    # def auto_login
-    #     render json: {user: UserSerializer.new(current_user)}, status: :accepted
-    # end
+    def auto_login
+        render json: {user: UserSerializer.new(current_user)}, status: :accepted
+    end
     
     private
 
