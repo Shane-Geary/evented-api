@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :groups, except: [:update, :destroy]
   # devise_for :installs
 
+  # mount_devise_token_auth_for 'User', at: '/auth'
   resources :users, only: [:create, :index]   
   post '/login', to: "auth#login"                      
   get '/auto_login', to: 'auth#auto_login'

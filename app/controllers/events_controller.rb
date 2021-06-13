@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :update, :destroy]
+  # before_action :authenticate_user! 
 
   # GET /events
   def index
@@ -17,7 +18,7 @@ class EventsController < ApplicationController
 
   # def new 
   #   @event = current_user.events.build
-  # end
+  # end 
 
   def create
     @event = current_user.events.build(event_params)

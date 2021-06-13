@@ -8,3 +8,5 @@
 
 group1 = Group.find_or_create_by(name: 'DeadHeads', fav_event: 'Concerts', fav_genre: 'Rock', catchphrase: 'Far out, man')
 group1 = Group.find_or_create_by(name: 'Headbangers', fav_event: 'Concerts', fav_genre: 'Dubstep', catchphrase: 'Break your neck!')
+
+# user1 = User.find_or_create_by(username: 'Gearz', encrypted_password: 'test')

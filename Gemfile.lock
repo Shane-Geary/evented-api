@@ -90,6 +90,8 @@ GEM
     dry-core (0.5.0)
       concurrent-ruby (~> 1.0)
     erubi (1.10.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -197,8 +199,8 @@ DEPENDENCIES
   byebug
   devise
   devise-jwt
+  fast_jsonapi
   jsonapi-serializer
-  jwt
   listen (~> 3.2)
   puma (~> 4.1)
   rack-cors
