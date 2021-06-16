@@ -29,6 +29,8 @@ gem 'bcrypt'
 
 gem 'active_model_serializers'
 
+gem 'pry'
+
 gem 'devise'
 gem 'devise-jwt'
 # gem 'jwt'

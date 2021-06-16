@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
     end
     
     def auth_header
+        # binding.pry
         request.headers['Authorization']
     end
     

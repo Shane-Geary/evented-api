@@ -21,9 +21,12 @@ class EventsController < ApplicationController
   # end 
 
   def create
+    # binding.pry
     @event = current_user.events.build(event_params)
-
+      # binding.pry
     if @event.save
+      # payload = {user_id: user.id}
+      # token = encode_token(payload)
       render json: @event, status: :created, location: @event
     else
       render json: @event.errors, status: :unprocessable_entity
