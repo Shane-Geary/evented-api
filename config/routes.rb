@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :events
-  resources :groups, except: [:update, :destroy]
+  resources :groups, except: [:update]
   # devise_for :installs
 
   # mount_devise_token_auth_for 'User', at: '/auth'

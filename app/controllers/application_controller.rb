@@ -1,12 +1,10 @@
 class ApplicationController < ActionController::API
-    # before_action :require_login
 
     def encode_token(payload)
         JWT.encode(payload, 'my_secret')
     end
     
     def auth_header
-        # binding.pry
         request.headers['Authorization']
     end
     
@@ -34,7 +32,4 @@ class ApplicationController < ActionController::API
         !!current_user
     end
     
-    # def require_login
-    #     render json: {message: 'Please Login or Sign up to see content'}, status: :unauthorized unless logged_in?
-    # end
 end
